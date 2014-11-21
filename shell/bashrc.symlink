@@ -8,6 +8,13 @@ case $- in
       *) return;;
 esac
 
+# update dotfiles with latest changes from the git repo
+echo "checking git for updated dotfiles..."
+cd ~/.git-dotfiles
+git pull
+cd
+echo -e "\n\n\n"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth

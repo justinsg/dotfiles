@@ -1,0 +1,124 @@
+#!/usr/bin/env python
+"""
+* SUMMARY:
+** check if script is being called as ~/.git-dotfiles/.git/hooks/post-merge or as ~/.git-dotfiles/.git_dotfiles_utils/update-post-merge
+** if ~/.git-dotfiles/.git_dotfiles_utils/update-post-merge then copy self to ~/.git-dotfiles/.git/hooks/post-merge
+** iterate through ~/.git-dotfiles/*
+** if exists in ~/ and is not a symlink to something in ~/.git-dotfiles/* then archive, delete, and create symlink
+** if doesn't exist in ~/ then create symlink
+** kill dead symlinks in ~/ that point into ~/.git-dotfiles/ (for mv / rm handling)
+** handle "normal" .git/* stuff somehow as a special case
+
+* TODO:
+** error checking: you never have enough of it!
+** possible security issues (depends on a trusted repo) - could maybe add some sanity checks
+** handle the case that of ~/.$dir/ where you only want to git-ify and symlink something under ~/.$dir (not the whole dir)
+
+* NOTES
+** to get the repo updated each time you login to a linked system you should put something like the following at the top of your .bashrc:
+
+<snip>
+echo "checking git for updated dotfiles..."
+cd ~/.git-dotfiles
+git pull
+cd
+echo -e "\n\n\n"
+</snip>
+"""
+
+from os import getenv, chdir, listdir, mkdir, symlink, unlink, execv
+from os.path import isfile, isdir, islink, realpath, basename, dirname
+from shutil import copy2 as copy, copytree, rmtree
+from time import strftime
+from sys import argv
+from glob import glob
+
+home = getenv('HOME')
+git_dotfiles = home + '/.dotfiles'
+git_dotfiles_utils = home + '/.dotfiles/script'
+git_dotfiles_archive = home + '/.dotfiles/archive'
+
+def archive(realfile):
+    timestamp = strftime('%d.%m.%Y_%H:%M:%S')
+    archive_dest = git_dotfiles_archive + '/' + basename(realfile) + '_' + timestamp
+    # create our archive destination
+    if not isdir(git_dotfiles_archive):
+        mkdir(git_dotfiles_archive)
+    # archive file
+    if isfile(realfile):
+        copy(realfile, archive_dest)
+        unlink(realfile)
+    # archive dir
+    elif isdir(realfile):
+        copytree(realfile, archive_dest)
+        rmtree(realfile)
+
+def kill_dead_links():
+    all_dotfiles = glob(home + '/.[!.]*')
+    for dotfile in all_dotfiles:
+        if islink(dotfile):
+            if dirname(realpath(dotfile)) == git_dotfiles and not (isfile(realpath(dotfile)) or isdir(realpath(dotfile))):
+                unlink(dotfile)
+
+def link(source, target):
+    symlink(source, target)
+
+def check(dotfile):
+    realfile = (home + '/' + dotfile)
+    # dotfile exists so we want to archive it before symlinking into repo
+    if (isfile(realfile) or isdir(realfile)) and not islink(realfile):
+        archive(realfile)
+    # dotfile is symlinked to itself
+    elif islink(realfile) and (realpath(realfile) == realfile):
+        unlink(realfile)
+    # dotfile is symlinked but not to us...so archive symlink target
+    elif islink(realfile) and not (realpath(realfile) == git_dotfiles + '/' + dotfile):
+        archive(realpath(realfile))
+    # we're good already!
+    # special handling for .git
+    elif dotfile == '.git' and islink(realfile) and (realpath(realfile) == git_dotfiles + '/' + '.user_git'):
+        return False
+    # normal dotfiles
+    elif islink(realfile) and (realpath(realfile) == git_dotfiles + '/' + dotfile):
+        return False
+    return True
+
+def update_dotfile_symlinks():
+    chdir(git_dotfiles)
+    dotfiles = listdir(git_dotfiles)
+    for dotfile in dotfiles:
+        if dotfile == '.git' or dotfile == basename(git_dotfiles_utils):
+            pass
+        elif dotfile == '.user_git':
+            if check('.git'):
+                link_target = home + '/' + dotfile
+                link_source = git_dotfiles + '/.user_git'
+                link(link_source, link_target)
+        elif check(dotfile):
+            link_target = home + '/' + dotfile
+            link_source = git_dotfiles + '/' + dotfile
+            link(link_source, link_target)
+
+script_name = basename(argv[0])
+post_merge = git_dotfiles + '/.git/hooks/post-merge'
+post_merge_update = git_dotfiles_utils + '/post-merge-update'
+# ensure that post-merge git hook is a symlink to post-merge-update (which is distributed via git)
+if script_name == 'post-merge':
+    if islink(post_merge) and realpath(post_merge) == post_merge_update:
+        update_dotfile_symlinks()
+        kill_dead_links()
+    else:
+        if isfile(post_merge):
+            unlink(post_merge)
+        link(post_merge_update, post_merge)
+        execv(post_merge, ['',])
+# if we're called this way do setup and then run the normal operation (aka, the post-merge action)
+elif script_name == 'post-merge-update':
+    print('installing post-merge hook into git')
+    if islink(post_merge) and realpath(post_merge) == post_merge_update:
+        execv(post_merge, ['',])
+    else:
+        if isfile(post_merge):
+            unlink(post_merge)
+        link(post_merge_update, post_merge)
+        execv(post_merge, ['',])
