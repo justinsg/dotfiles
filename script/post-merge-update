@@ -18,11 +18,11 @@
 ** to get the repo updated each time you login to a linked system you should put something like the following at the top of your .bashrc:
 
 <snip>
-echo "checking git for updated dotfiles..."
-cd ~/.git-dotfiles
+echo "Checking git for updated dotfiles..."
+cd ~/.dotfiles
 git pull
 cd
-echo -e "\n\n\n"
+echo -e "\n"
 </snip>
 """
 
@@ -85,19 +85,8 @@ def check(dotfile):
 
 def update_dotfile_symlinks():
     chdir(git_dotfiles)
-    dotfiles = listdir(git_dotfiles)
-    for dotfile in dotfiles:
-        if dotfile == '.git' or dotfile == basename(git_dotfiles_utils):
-            pass
-        elif dotfile == '.user_git':
-            if check('.git'):
-                link_target = home + '/' + dotfile
-                link_source = git_dotfiles + '/.user_git'
-                link(link_source, link_target)
-        elif check(dotfile):
-            link_target = home + '/' + dotfile
-            link_source = git_dotfiles + '/' + dotfile
-            link(link_source, link_target)
+    execv("script/bootstrap", ['',])
+    return
 
 script_name = basename(argv[0])
 post_merge = git_dotfiles + '/.git/hooks/post-merge'
@@ -105,7 +94,7 @@ post_merge_update = git_dotfiles_utils + '/post-merge-update'
 # ensure that post-merge git hook is a symlink to post-merge-update (which is distributed via git)
 if script_name == 'post-merge':
     if islink(post_merge) and realpath(post_merge) == post_merge_update:
-        #update_dotfile_symlinks()
+        update_dotfile_symlinks()
         kill_dead_links()
     else:
         if isfile(post_merge):
