@@ -105,7 +105,7 @@ post_merge_update = git_dotfiles_utils + '/post-merge-update'
 # ensure that post-merge git hook is a symlink to post-merge-update (which is distributed via git)
 if script_name == 'post-merge':
     if islink(post_merge) and realpath(post_merge) == post_merge_update:
-        update_dotfile_symlinks()
+        #update_dotfile_symlinks()
         kill_dead_links()
     else:
         if isfile(post_merge):
