@@ -9,10 +9,12 @@ case $- in
 esac
 
 # update dotfiles with latest changes from the git repo
-echo "Checking for updated dotfiles..."
-cd ~/.dotfiles
-git pull
-cd
+if test "`find ~/.dotfiles/.git/FETCH_HEAD -mmin +86400`"; then
+    echo "Checking for updated dotfiles..."
+    cd ~/.dotfiles
+    git pull
+    cd
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
