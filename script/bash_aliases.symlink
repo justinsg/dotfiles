@@ -1,0 +1,1 @@
+alias update-dotfiles='git --git-dir ~/.dotfiles/.git pull'
