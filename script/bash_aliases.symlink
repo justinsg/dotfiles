@@ -1,1 +1,15 @@
+# Dotfiles stuff
 alias update-dotfiles='git --git-dir ~/.dotfiles/.git pull'
+
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# Clearing
+alias cls='clear;ls'
+alias hcl='history -c; clear'
