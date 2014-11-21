@@ -13,3 +13,6 @@ alias ......="cd ../../../../.."
 # Clearing
 alias cls='clear;ls'
 alias hcl='history -c; clear'
+
+# apt
+alias agi='sudo apt-get install'
