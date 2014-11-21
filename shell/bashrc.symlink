@@ -9,11 +9,11 @@ case $- in
 esac
 
 # update dotfiles with latest changes from the git repo
-echo "checking git for updated dotfiles..."
+echo "Checking git for updated dotfiles..."
 cd ~/.dotfiles
 git pull
 cd
-echo -e "\n\n"
+echo -e "\n"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
