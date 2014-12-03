@@ -4,6 +4,7 @@ alias update-dotfiles='git --git-dir ~/.dotfiles/.git pull'
 # Searching
 alias lg='ll | grep'
 alias llg='ll | grep'
+alias historyg='history | grep'
 
 # Directory navigation
 alias ..='cd ..'
@@ -20,6 +21,10 @@ alias hcl='history -c; clear'
 
 # apt
 alias agi='sudo apt-get install'
+alias agr='sudo apt-get remove'
+alias agu='sudo apt-get update'
+alias aguu='sudo apt-get update && sudo apt-get upgrade'
 
 # Django
 alias pymanage='python manage.py'
+alias runserver='python manage.py collectstatic --noinput && python manage.py runserver'
