@@ -27,4 +27,4 @@ alias aguu='sudo apt-get update && sudo apt-get upgrade'
 
 # Django
 alias pymanage='python manage.py'
-alias runserver='python manage.py collectstatic --noinput && python manage.py runserver'
+alias runserver='python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000'
