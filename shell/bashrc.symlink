@@ -9,7 +9,7 @@ case $- in
 esac
 
 # update dotfiles with latest changes from the git repo
-if test "`find ~/.dotfiles/.git/FETCH_HEAD -mmin +1440`"; then
+if test "`find ~/.dotfiles/.git -mmin +1440` -name FETCH_HEAD"; then
     echo "Checking for updated dotfiles..."
     cd ~/.dotfiles
     git pull
