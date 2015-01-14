@@ -1,0 +1,3 @@
+web=/var/www
+weblog=/var/log/apache2
+webconf=/etc/apache2

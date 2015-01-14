@@ -122,8 +122,39 @@ if ! shopt -oq posix; then
   fi
 fi
 
+GOTO_FILE=$(cat ~/.goto)
+GOTO_LIST=$(echo $GOTO_FILE | tr "=" "\n")
+goto ()
+{
+  if [ ! $1 ]
+    then
+    echo "Try one of:"
+    label=1
+    for gt in $GOTO_LIST
+    do
+      if [ $label == 1 ]
+        then
+        echo "  $gt"
+        label=0
+      else
+        label=1
+      fi
+    done
+    return
+  fi
 
-# Color the hostname
-if [ $HOSTNAME = 'justin-desktop' ]; then
-    export HOST_COLOR="\[\033[1;36m\]"
-fi
+  next=0
+  for gt in $GOTO_LIST
+  do
+    if [ $next == 1 ]
+      then
+      cd $gt
+      return
+    fi
+    if [ $gt == $1 ]
+      then
+      next=1
+    fi
+  done
+  echo "No goto for '$1'"
+}
