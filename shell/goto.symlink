@@ -1,3 +1,10 @@
+log=/var/log
 web=/var/www
 weblog=/var/log/apache2
 webconf=/etc/apache2
+archserver=/var/www/d7/archimedesserver
+archclient=/var/www/d7/archimedesclient
+d6=/var/www/d6/sandbox
+d7=/var/www/d7/sandbox
+d8=/var/www/d8/sandbox
+permit=/home/justin/permit/permit

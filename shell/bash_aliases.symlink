@@ -32,3 +32,6 @@ alias runserver='python manage.py collectstatic --noinput && python manage.py ru
 # Drupal
 alias drysh='drush'
 alias drsh='drush'
+
+# Git
+alias gits='git status'

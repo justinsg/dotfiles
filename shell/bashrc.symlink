@@ -158,3 +158,6 @@ goto ()
   done
   echo "No goto for '$1'"
 }
+
+# Composer vendor binaries
+export PATH="$HOME/.composer/vendor/bin:$PATH"
