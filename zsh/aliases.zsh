@@ -18,6 +18,7 @@ if [ $UID -ne 0 ]; then
   alias sudo='sudo '
   alias scat='sudo cat'
   alias svim='sudo vim'
+  alias snano='sudo nano'
   alias root='sudo -s'
   alias reboot='sudo reboot'
   alias netcfg='sudo netcfg2'
