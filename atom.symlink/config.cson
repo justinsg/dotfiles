@@ -1,20 +1,45 @@
 "*":
-  editor:
-    fontSize: 13
-    invisibles: {}
+  'editor':
+    'showIndentGuide': true
+    'fontSize': 13
+    'invisibles': {}
   "exception-reporting":
-    userId: "fb9cd9e7-e7ae-47af-f2e8-75e42b1ec93d"
-  welcome:
-    showOnStartup: false
-  core:
-    themes: [
+    'userId': "fb9cd9e7-e7ae-47af-f2e8-75e42b1ec93d"
+  'welcome':
+    'showOnStartup': false
+  'core':
+    'ignoredNames': [
+      '.bundle'
+      '.git'
+      'log'
+      'repositories'
+      'tmp'
+      'vendor'
+    ]
+    'themes': [
       "atom-dark-ui"
       "monokai-dark"
     ]
-    audioBeep: false
-    autoHideMenuBar: true
-  tabs: {}
-  whitespace: {}
-  docblockr: {}
-  linter: {}
+    'audioBeep': false
+    'autoHideMenuBar': true
+    'hideGitIgnoredFiles': false
+    'disabledPackages': [
+      'background-tips'
+      'exception-reporting'
+      'metrics'
+    ]
+  'spell-check':
+    'grammars': [
+      'text.plain'
+      'source.gfm'
+      'text.git-commit'
+    ]
+  'tabs': {}
+  'whitespace': {}
+  'docblockr': {}
+  'linter': {}
   "tree-view": {}
+  'welcome':
+    'showOnStartup': false
+  'release-notes':
+    'viewedVersion': '0.89.0'
