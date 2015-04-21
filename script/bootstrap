@@ -56,11 +56,6 @@ link_file () {
   local overwrite= backup= skip=
   local action=
 
-  if [ "$PUPPET_RUN" = "" ]
-  then
-    overwrite_all=true
-  fi
-
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
 
@@ -134,6 +129,11 @@ install_dotfiles () {
   info 'installing dotfiles'
 
   local overwrite_all=false backup_all=false skip_all=false
+
+  if [ "$PUPPET_RUN" == "1" ]
+  then
+    local overwrite_all=true
+  fi
 
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
   do
