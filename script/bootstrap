@@ -56,6 +56,11 @@ link_file () {
   local overwrite= backup= skip=
   local action=
 
+  if [ "$PUPPET_RUN" = "" ]
+  then
+    overwrite_all=true
+  fi
+
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
 
