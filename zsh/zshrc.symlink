@@ -88,4 +88,9 @@ function spw {
    ssh $1 cat password.txt.gpg | gpg -qd
 }
 
+# Virtualenvwrapper 
+if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
+    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+fi
+
 . ~/.dotfiles/zsh/aliases.zsh

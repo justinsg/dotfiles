@@ -1,0 +1,25 @@
+archimedes:
+  title: "archimedes"
+  paths: [
+    "/home/justin/archimedes/refactored/archimedes_client"
+    "/home/justin/archimedes/refactored/archimedes_test"
+    "/home/justin/archimedes/refactored/archimedes"
+    "/home/justin/jenkins/chch-jenkins-configs"
+    "/home/justin/jenkins/justins-jenkins-configs"
+    "/home/justin/archimedes/refactored/archimedes_client_d6"
+    "/home/justin/archimedes/refactored/archimedes_client_d8"
+    "/home/justin/archimedes/refactored/archimedes_profile"
+    "/home/justin/archimedes/refactored/archimedes_theme"
+    "/home/justin/archimedes/parser"
+    "/home/justin/django/archimedes"
+  ]
+permit:
+  title: "permit"
+  paths: [
+    "/home/justin/django/intheknow"
+  ]
+"Mezzanine Doc Improvement":
+  title: "Mezzanine Doc Improvement"
+  paths: [
+    "/home/justin/mezzanine/demo"
+  ]

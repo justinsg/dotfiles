@@ -1,45 +1,57 @@
 "*":
-  'editor':
-    'showIndentGuide': true
-    'fontSize': 13
-    'invisibles': {}
+  editor:
+    showIndentGuide: true
+    invisibles:
+      eol: " "
+    fontSize: 13
+    scrollPastEnd: true
+    showInvisibles: true
+    tabLength: 4
   "exception-reporting":
-    'userId': "fb9cd9e7-e7ae-47af-f2e8-75e42b1ec93d"
-  'welcome':
-    'showOnStartup': false
-  'core':
-    'ignoredNames': [
-      '.bundle'
-      '.git'
-      'log'
-      'repositories'
-      'tmp'
-      'vendor'
+    userId: "fb9cd9e7-e7ae-47af-f2e8-75e42b1ec93d"
+  welcome:
+    showOnStartup: false
+  core:
+    ignoredNames: [
+      ".bundle"
+      ".git"
+      "log"
+      "repositories"
+      "tmp"
+      "vendor"
+      "*.pyc"
     ]
-    'themes': [
+    themes: [
       "atom-dark-ui"
       "monokai-dark"
     ]
-    'audioBeep': false
-    'autoHideMenuBar': true
-    'hideGitIgnoredFiles': false
-    'disabledPackages': [
-      'background-tips'
-      'exception-reporting'
-      'metrics'
+    audioBeep: false
+    hideGitIgnoredFiles: false
+    disabledPackages: [
+      "background-tips"
+      "exception-reporting"
+      "metrics"
+      "linter"
     ]
-  'spell-check':
-    'grammars': [
-      'text.plain'
-      'source.gfm'
-      'text.git-commit'
+    autoHideMenuBar: true
+  "spell-check":
+    grammars: [
+      "text.plain"
+      "source.gfm"
+      "text.git-commit"
     ]
-  'tabs': {}
-  'whitespace': {}
-  'docblockr': {}
-  'linter': {}
-  "tree-view": {}
-  'welcome':
-    'showOnStartup': false
-  'release-notes':
-    'viewedVersion': '0.89.0'
+  tabs: {}
+  whitespace: {}
+  docblockr: {}
+  linter:
+    statusBar: "Show error of the selected line"
+  "tree-view":
+    hideIgnoredNames: true
+  "release-notes":
+    viewedVersion: "0.89.0"
+  "highlight-selected": {}
+  "autocomplete-plus": {}
+  "linter-puppet-lint":
+    oldVersion: false
+  "linter-phpcs":
+    codeStandardOrConfigFile: "Drupal"
