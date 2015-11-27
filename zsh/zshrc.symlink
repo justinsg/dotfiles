@@ -45,7 +45,7 @@ ZSH_CUSTOM=~/.dotfiles/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git virtualenvwrapper)
+plugins=(git)
 
 # User configuration
 
@@ -91,6 +91,7 @@ function spw {
 # Virtualenvwrapper 
 if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    plugins+=(virtualenvwrapper)
 fi
 
 . ~/.dotfiles/zsh/aliases.zsh
