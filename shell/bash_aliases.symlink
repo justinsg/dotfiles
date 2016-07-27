@@ -15,6 +15,12 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
+# Colours
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias zgrep='zgrep --color=auto'
+
 # Clearing
 alias cls='clear;ls'
 alias hcl='history -c; clear'
@@ -35,3 +41,10 @@ alias drsh='drush'
 
 # Git
 alias gits='git status'
+
+# SVN
+alias svndiff='svn diff | colordiff | less'
+
+# The great conversion
+alias nanoplease='/bin/nano'
+alias nano='vim'

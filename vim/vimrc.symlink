@@ -1,4 +1,25 @@
 syntax on
+set nocompatible              " required
+filetype off                  " required
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+
+" PEP8 indentation
+au BufNewFile,BufRead *.py:
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" Flag unnecessary whitespace
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+set encoding=utf-8
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
