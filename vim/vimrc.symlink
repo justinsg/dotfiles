@@ -4,6 +4,9 @@ filetype off                  " required
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 " PEP8 indentation
 au BufNewFile,BufRead *.py:
