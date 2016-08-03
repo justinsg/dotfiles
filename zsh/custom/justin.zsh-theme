@@ -1,6 +1,12 @@
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 
-PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%~/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+function svn_prompt_info_justin() {
+  if in_svn; then
+    echo "$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_SVN_PROMPT_PREFIX$ZSH_THEME_REPO_NAME_COLOR$(svn_get_rev_nr)/$(svn_get_branch_name)$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_SVN_PROMPT_SUFFIX"
+  fi
+}
+
+PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%~/%b%{$reset_color%} $(svn_prompt_info_justin)$(git_prompt_info)%(!.#.$) '
 RPROMPT='[%*]'
 
 # git theming
@@ -8,6 +14,12 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg_no_bold[red]%}%B"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[blue]%})%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
+
+# svn theming
+ZSH_THEME_SVN_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg_no_bold[red]%}%B"
+ZSH_THEME_SVN_PROMPT_SUFFIX="%b%{$fg_bold[blue]%})%{$reset_color%} "
+ZSH_THEME_SVN_PROMPT_CLEAN="*"
+ZSH_THEME_SVN_PROMPT_DIRTY=""
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
 export LSCOLORS="Gxfxcxdxbxegedabagacad"

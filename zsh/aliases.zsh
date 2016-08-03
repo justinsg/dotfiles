@@ -12,12 +12,14 @@ fi
 
 # zsh
 alias reload!='. ~/.zshrc'
+alias reload~='reload!'
 
 # privileged access
 if [ $UID -ne 0 ]; then
   alias sudo='sudo '
   alias scat='sudo cat'
   alias svim='sudo vim'
+  alias svi='sudo vi'
   alias snano='sudo nano'
   alias root='sudo -s'
   alias reboot='sudo reboot'
