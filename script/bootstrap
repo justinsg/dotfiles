@@ -130,7 +130,7 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  if [ "$PUPPET_RUN" == "1" ]
+  if [ "$CM_RUN" == "1" ]
   then
     local overwrite_all=true
   fi
