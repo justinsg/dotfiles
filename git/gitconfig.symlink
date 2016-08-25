@@ -21,7 +21,6 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = nano
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -38,3 +37,5 @@
         default = matching
 [stash]
 	showPatch = 1
+[pack]
+	threads = 0
