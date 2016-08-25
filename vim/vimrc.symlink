@@ -2,7 +2,10 @@ syntax on
 set nocompatible              " required
 filetype off                  " required
 
-" Wrap gitcommit file types at the appropriate length
+" Highlight when git commit messages get too long
+au FileType gitcommit set tw=72
+
+" Indentation
 filetype indent plugin on
 set tabstop=4
 set shiftwidth=4
