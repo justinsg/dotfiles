@@ -80,15 +80,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Change sudo password on catalyst server
-function spw {
-   if (( ! $# )); then
-     echo "No server given. Doing nothing." >&2
-     return 1
-   fi
-   ssh $1 cat password.txt.gpg | gpg -qd
-}
-
 # Virtualenvwrapper 
 if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
     source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
