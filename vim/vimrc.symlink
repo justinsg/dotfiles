@@ -1,6 +1,23 @@
+" Use vim defaults
+set nocompatible
+
+" Syntax highlighting
 syntax on
-set nocompatible              " required
-filetype off                  " required
+
+" Highlight search results
+set hlsearch
+
+" ?
+filetype off
+
+" Allow backspacing over everything in insert mode
+set bs=indent,eol,start
+
+" Keep extra lines of command history
+set history=50
+
+" Show the cursor position all the time
+set ruler
 
 " Highlight when git commit messages get too long
 au FileType gitcommit set tw=72
