@@ -22,6 +22,7 @@ alias lg='ll | grep'
 alias llg='ll | grep'
 alias findg='find | grep'
 alias historyg='history | grep'
+alias chgrep='grep --include "*.c" --include "*.h"'
 
 # Typos
 alias kk='ll'
