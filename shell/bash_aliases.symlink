@@ -2,7 +2,7 @@
 ###########
 
 # Dotfiles
-alias update-dotfiles='git --git-dir ~/.dotfiles/.git pull'
+alias update-dotfiles='git -C ~/.dotfiles pull'
 
 # Listing
 alias ls='ls -hF --color=auto'
