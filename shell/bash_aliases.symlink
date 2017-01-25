@@ -90,8 +90,8 @@ alias drsh='drush'
 alias gits='git status'
 
 # SVN
-alias svndiff='svn diff | colordiff | less'
-alias svnlog='svn log | less'
+function svndiff() { svn diff $@ | colordiff | less ;}
+function svnlog() { svn log $@ | less ;}
 alias svns='svn status --ignore-externals'
 
 
