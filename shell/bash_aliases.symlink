@@ -92,6 +92,7 @@ alias gits='git status'
 # SVN
 function svndiff() { svn diff $@ | colordiff | less ;}
 function svnlog() { svn log $@ | less ;}
+function svnblame() { svn blame $@ | less ;}
 alias svns='svn status --ignore-externals'
 
 
