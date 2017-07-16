@@ -6,7 +6,7 @@ function svn_prompt_info_justin() {
   fi
 }
 
-PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%~/%b%{$reset_color%} $(svn_prompt_info_justin)$(git_prompt_info)%(!.#.$) '
+PROMPT='%{$fg[$NCOLOR]%}%B%n@%m%b%{$reset_color%}:%{$fg[blue]%}%B%~/%b%{$reset_color%} $(svn_prompt_info_justin)$(git_prompt_info)%(!.#.$) '
 RPROMPT='[%*]'
 
 # git theming
