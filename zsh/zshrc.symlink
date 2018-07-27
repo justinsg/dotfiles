@@ -59,7 +59,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 setopt noequals
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+# export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor
@@ -76,4 +76,11 @@ export VIRTUALENVWRAPPER_PYTHON="$(command \which python3)"
 if [ "${VIRTUALENVWRAPPER_PYTHON:-}" = "" ]
 then
     export VIRTUALENVWRAPPER_PYTHON="$(command \which python)"
+fi
+
+# Add yarn to $PATH
+YARN_BIN_PATH=$HOME/.yarn/bin
+if [[ -d ${YARN_BIN_PATH} ]]
+then
+    export PATH="$PATH:${YARN_BIN_PATH}"
 fi
