@@ -44,6 +44,7 @@ ZSH_CUSTOM=~/.dotfiles/zsh/custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  virtualenvwrapper
 )
 
 # Setup oh-my-zsh
@@ -64,9 +65,9 @@ export EDITOR='vim'
 # For a full list of active aliases, run `alias`.
 . ~/.dotfiles/zsh/aliases.zsh
 
-# Virtualenvwrapper 
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-    plugins+=(virtualenvwrapper)
+# Prefer python3 for virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON="$(command \which python3)"
+if [ "${VIRTUALENVWRAPPER_PYTHON:-}" = "" ]
+then
+    export VIRTUALENVWRAPPER_PYTHON="$(command \which python)"
 fi
-
