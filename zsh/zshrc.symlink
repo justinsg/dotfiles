@@ -84,3 +84,10 @@ if [[ -d ${YARN_BIN_PATH} ]]
 then
     export PATH="$PATH:${YARN_BIN_PATH}"
 fi
+
+# Add home/bin to $PATH
+HOME_BIN_PATH=$HOME/bin
+if [[ -d ${HOME_BIN_PATH} ]]
+then
+    export PATH="$PATH:${HOME_BIN_PATH}"
+fi
