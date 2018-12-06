@@ -95,4 +95,26 @@ function svnlog() { svn log $@ | less ;}
 function svnblame() { svn blame $@ | less ;}
 alias svns='svn status --ignore-externals'
 
+# Conversions
+h2d(){
+  echo "ibase=16; $@" | bc
+}
+h2b(){
+  echo "ibase=16; obase=2; $@" | bc
+}
+b2d(){
+  echo "ibase=2; $@" | bc
+}
+b2h(){
+  echo "ibase=2; obase=16; $@" | bc
+}
+d2h(){
+  echo "obase=16; $@" | bc
+}
+d2b(){
+  echo "obase=2; $@" | bc
+}
 
+nibbles() {
+  awk '{while(length%4)$0=0$0;$1=$1}1' FPAT=....
+}
