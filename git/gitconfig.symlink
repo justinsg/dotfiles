@@ -39,3 +39,5 @@
 	showPatch = 1
 [pack]
 	threads = 0
+[diff "sopsdiffer"]
+	textconv = sops -d
