@@ -91,3 +91,10 @@ if [[ -d ${HOME_BIN_PATH} ]]
 then
     export PATH="$PATH:${HOME_BIN_PATH}"
 fi
+
+# Add nvm to $PATH
+NVM_BIN_PATH=$HOME/.nvm/bin
+if [[ -d ${NVM_BIN_PATH} ]]
+then
+    export PATH="$PATH:${NVM_BIN_PATH}"
+fi
