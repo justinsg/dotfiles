@@ -31,6 +31,7 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
+        pager = less -x1,5
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -51,3 +52,5 @@
 	threads = 0
 [diff "sopsdiffer"]
 	textconv = sops -d
+[pull]
+	ff = only
