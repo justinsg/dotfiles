@@ -92,9 +92,17 @@ then
     export PATH="$PATH:${HOME_BIN_PATH}"
 fi
 
-# Add nvm to $PATH
-NVM_BIN_PATH=$HOME/.nvm/bin
-if [[ -d ${NVM_BIN_PATH} ]]
-then
-    export PATH="$PATH:${NVM_BIN_PATH}"
+# Load NVM
+NVM_DIR="$HOME/.nvm"
+if [[ -d ${NVM_DIR} ]]; then
+    export NVM_DIR
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+    # Update current binary for non-interactive use (e.g. IDE settings)
+    if [ ! -z "$NVM_BIN" ] && [ -d "$NVM_BIN" ] && [ -x "$NVM_BIN/node" ]; then
+        LOCAL_BIN="$HOME/.local/bin"
+        [ ! -d $LOCAL_BIN ] && mkdir -p $LOCAL_BIN
+        ln -sf $NVM_BIN/* "$LOCAL_BIN/"
+    fi
 fi
